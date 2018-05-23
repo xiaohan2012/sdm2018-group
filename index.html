@@ -7,7 +7,7 @@
     <title>reveal.js</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/sky.css">
+    <link rel="stylesheet" href="css/theme/simple.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -20,73 +20,266 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
+
+    <style>
+      img { height:100%; width:auto }
+    </style>
+
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-	<section>
+	<section id="first">
 	  <h2> SDM 2018, San Diego</h2>
 	  <h3> Han Xiao</h3>
 	</section>
 
-	<section data-markdown id="intro">
+	<section data-markdown>
 	  <textarea data-template>
-	    ## general
-
-	    - location
+	    ![](figs/hotel.jpg)
 	  </textarea>
 	</section>
 
-	<section data-markdown id="session">
+	<section data-markdown>
 	  <textarea data-template>
-	    ## sessions and topics
-
-	    - location
+	    ![](figs/grass.jpg)
 	  </textarea>
 	</section>
 
-
-	<section data-markdown id="graphdist">
+	<section data-markdown>
 	  <textarea data-template>
-	    ## 	A Family of Tractable Graph Distances
-	    - 
-	    - 
+	    ![](figs/plant1.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown>
+	  <textarea data-template>
+	    ![](figs/plant2.jpg)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="sessons">
+	  <textarea data-template>
+	    ## sessions
+	  </textarea>
+	</section>
+
+	<section data-markdown id="graphdist-paper">
+	  <textarea data-template>
+	    ![](figs/graphdist-1.png)
 	  </textarea>
 	</section>
 	
-	<section data-markdown id="lessons">
+	<section data-markdown id="graphdist-intro">
 	  <textarea data-template>
-	    ## lessons learned
+	    ### metric property vs tractability
 
+	    - CKS / chemical distance: metric but *non-tractable*
+	    - heuristics: tractable but *non-metric*
+	    - metric usefulness: nearest neighbor search, clustering, etc
+	  </textarea>
+	</section>
+
+	<section data-markdown id="graphdist-motivation">
+	  <textarea data-template>
+	    ### motivation
+
+	    - distances that are both metric and tractable
+  	      - computing matching between $A \text{ and } B$ is not the primary goal
+	    - via relaxation of the problem
+	  </textarea>
+	</section>
+
+	<section data-markdown id="graphdist-relaxation">
+	  <textarea data-template>
+	    ### problem relaxation
+	    ![](figs/graphdist-relaxation.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="graphdist-contrib1">
+	  <textarea data-template>
+	    ### contribution 1: metric 
+	    ![](figs/graphdist-contrib-1.png)
+	    ![](figs/graphdist-contrib-2.png)
+	  </textarea>
+	</section>	
+
+	<section data-markdown id="graphdist-contrib1">
+	  <textarea data-template>
+	    ### contribution 1: tractbility
 	    
+	    - (ii) convex optimization
+	    - (iii) non-convex but reduces to spectral decomposition
+
+	  </textarea>
+	</section>	
+
+	<section data-markdown id="graphdist-contrib2">
+	  <textarea data-template>
+	    ### contribution 2: include node attributes
+
+	    - important in practice
+	    - via hard/soft constraints
+	      - hard constraint: e.g, male to male, female to female
+   	      - soft constraint: e.g, user profile, vector distance
+
 	  </textarea>
 	</section>
 	
+	<section data-markdown id="wp-paper">
+	  <textarea data-template>
+	    ![](figs/wp-paper.png)
+
+	    - [paper](https://www.francois-petitjean.com/Research/Petitjean2018-SDM-learn-warp-window.pdf)
+	    - [supp](https://www.francois-petitjean.com/Research/Petitjean2018-SDM-learn-warp-window-sup.pdf)
+	  </textarea>
+	   
+	</section>
+
+	<section data-markdown id="wp-motivation">
+	  <textarea data-template>
+	    ### motivation
+
+	    - consider time series classification problem
+	    - Dynamic Time Warping (DTW): popular similarity measure
+	      - involves learning the warping window
+	    - nearest neighbour algorithm (NN) using DTW is a leading algorithm for the classification task
+	    - learning warping window is time-consuming
+	      - naively, $O(N^2 L^3)$ (more explanation later)
+            - speed up?
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-basics">
+	  <textarea data-template>
+	    ### DTW basics
+
+	    - distance measure between two time series by aligning them
+	    - solvable by dynamic programming $O(L^2)$
+	    - warping path: $p=[w_1, \ldots, w_k]$, where $w=(i, j)$
+	    
+	    ![](figs/wp-dtw.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-ww">
+	  <textarea data-template>
+	    ### warping window (WW)
+
+	    - limit the search within window $[-w, w]$
+	      - speed up to $O(wL)$
+	    - also avoid pathelogical alignment
+	    
+	    ![](figs/wp-ww.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-learn-ww">
+	  <textarea data-template>
+	    ### learning WW
+	    
+	    - why? has a strong influence on classification accuracy
+	    - how to learn? x-fold cross validation (CV)
+	      - (typical hyper-parameter tuning problem)
+	    - in this paper, leave-one-out CV (LOO-CV)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-cv">
+	  <textarea data-template>
+	    ### naive CV
+	    
+	    ![](figs/wp-naive-cv.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-theorems">
+	  <textarea data-template>
+	    ### main theorems
+	    
+	    ![](figs/wp-theorem-3.1.png)
+	    ![](figs/wp-theorem-3.2.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-algo">
+	  <textarea data-template>
+	    ### algorithm
+	    
+	    - main task: fill in $N \times L$ NN table
+	    ![](figs/wp-nn-table.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="wp-algo-c">
+	  <textarea data-template>
+	    ### algorithm cont'd
+	    
+	    ![](figs/wp-algo.png)
+	  </textarea>
+	</section>	
+
+
+	<section data-markdown id="eeg-paper">
+	  <textarea data-template>
+	    ![](figs/eeg-paper.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="eeg-motivation">
+	  <textarea data-template>
+	    ### motivation
+
+	    - consider EEG classification (brain disease diagnosis)
+	    - performance degraded by *invalid EEGs* 
+	      - environmental noise
+	      - non-target activity, etc
+	    - question: how to remove select relevant EEGs?
+	  </textarea>
+	</section>
+
+	<section data-markdown id="eeg-formulation">
+	  <textarea data-template>
+	    ### formulation
+
+	    - build a EEG similarity graph
+	      - node: one EEG (with node weight)
+	      - edge weight: modifed version of Frechet  distance
+	    - problem: extract $m$ disjoint cliques with maximum weight
+	    - (unselected nodes are removed from classification)
+	  </textarea>
+	</section>
+	<!-- https://www.youtube.com/watch?v=3sjqYJ9tYiY -->
+
+	<section data-markdown id="eeg-formulation">
+	  <textarea data-template>
+	    ### take-home message
+
+	    - at least two "San Jose"s (SJO vs SJC) in the world
+	    - be careful when booking flights
+	  </textarea>
+	</section>
       </div>
     </div>
 
+    <script
+       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+       integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+       crossorigin="anonymous"></script>
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/mustache.min.js"></script>
+    <script src="js/app.js"></script>
 
     <script>
       // More info about config & dependencies:
       // - https://github.com/hakimel/reveal.js#configuration
       // - https://github.com/hakimel/reveal.js#dependencies
-
-      Reveal.initialize({
-      math: {
-      mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
       
-      },			
-      dependencies: [
-      { src: 'plugin/markdown/marked.js' },
-      { src: 'plugin/markdown/markdown.js' },
-      { src: 'plugin/notes/notes.js', async: true },
-      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-      {src: 'plugin/math/math.js', async: true }
-      ]
-      });
+
+
+
     </script>
   </body>
 </html>
