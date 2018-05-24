@@ -78,7 +78,7 @@
 
 	<section data-markdown id="paper-selection">
 	  <textarea data-template>
-	    ### paper selection
+	    ### selected papers
 	  </textarea>
 	</section>
 
@@ -103,8 +103,8 @@
 	    ### motivation
 
 	    - distances that are both metric and tractable
-  	      - computing matching between $A \text{ and } B$ is not the primary goal
-	    - via relaxation of the problem
+  	      - computing $P$ between $A \text{ and } B$ is not the primary goal
+	    - via **relaxation** of the problem
 	  </textarea>
 	</section>
 
@@ -138,13 +138,23 @@
 	    ### contribution 2: include node attributes
 
 	    - important in practice
-	    - via hard/soft constraints
+	    - modeled via hard/soft constraints
 	      - hard constraint: e.g, male to male, female to female
    	      - soft constraint: e.g, user profile, vector distance
 
 	  </textarea>
 	</section>
-	
+
+	<section data-markdown id="graphdist-exp-intro">
+	  ### a glimpse of experiment..
+	</section>
+
+	<section data-markdown id="graphdist-experiment">
+	  <textarea data-template>
+	    ![](figs/graphdist-experiment.png)
+	  </textarea>
+	</section>
+
 	<section data-markdown id="wp-paper">
 	  <textarea data-template>
 	    ![](figs/wp-paper.png)
@@ -159,13 +169,13 @@
 	  <textarea data-template>
 	    ### motivation
 
-	    - consider time series classification problem
+	    - consider time-series classification problem
+	      - nearest neighbour algorithm (NN) using DTW is a leading algorithm for the classification task
 	    - Dynamic Time Warping (DTW): popular similarity measure
-	      - involves learning the warping window
-	    - nearest neighbour algorithm (NN) using DTW is a leading algorithm for the classification task
+	      - involves learning the warping window (later)
 	    - learning warping window is time-consuming
-	      - naively, $O(N^2 L^3)$ (more explanation later)
-            - speed up?
+	      - naively, $O(N^2 L^3)$ (later)
+            - **goal: speed up?**
 	  </textarea>
 	</section>
 
@@ -198,8 +208,8 @@
 	    ### learning WW
 	    
 	    - why? has a strong influence on classification accuracy
-	    - how to learn? x-fold cross validation (CV)
-	      - (typical hyper-parameter tuning problem)
+	    - how to learn? hyper-parameter tuning problem
+	      - x-fold cross validation (CV)
 	    - in this paper, leave-one-out CV (LOO-CV)
 	  </textarea>
 	</section>
@@ -253,7 +263,7 @@
 	    - performance degraded by *invalid EEGs* 
 	      - environmental noise
 	      - non-target activity, etc
-	    - question: how to remove select relevant EEGs?
+	    - question: how to select relevant EEGs?
 	  </textarea>
 	</section>
 
@@ -262,22 +272,33 @@
 	    ### formulation
 
 	    - build a EEG similarity graph
-	      - node: one EEG (with node weight)
+	      - node: one EEG (time series, with node weight)
 	      - edge weight: modifed version of Frechet  distance
 	    - problem: extract $m$ disjoint cliques with maximum weight
-	    - (unselected nodes are removed from classification)
+	    - (unselected nodes/EEGs are removed from classification)
 	  </textarea>
 	</section>
 	<!-- https://www.youtube.com/watch?v=3sjqYJ9tYiY -->
 
-	<section data-markdown id="eeg-formulation">
+	<section data-markdown id="leader-paper">
+	  <textarea data-template>
+	    ![](figs/leader-paper.png)
+	  </textarea>
+	</section>
+
+	<section data-markdown id="msg">
 	  <textarea data-template>
 	    ### take-home message
+	  </textarea>
+	</section>
 
+	<section data-markdown id="msg-content">
+	  <textarea data-template>
 	    - at least two "San Jose"s (SJO vs SJC) in the world
 	    - be careful when booking flights
 	  </textarea>
 	</section>
+
       </div>
     </div>
 
